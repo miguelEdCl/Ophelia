@@ -1,0 +1,33 @@
+<div class="TablaDatos">
+  <div class="Titulos">
+    <ul>
+      <li>ID</li>
+      <li>Primer Nombre</li>
+      <li>Primer Apellido</li>
+      <li>Edad</li>
+    </ul>
+  </div>
+  <div class="Registros">
+
+        <ul>
+          <li *ngFor="let Cliente of Clientes">
+            {{ Cliente.IdCliente }}.
+          </li>
+        </ul>
+        <ul>
+          <li *ngFor="let Cliente of Clientes">
+            {{ Cliente.PNombre }}.
+          </li>
+        </ul>
+        <ul>
+          <li *ngFor="let Cliente of Clientes">
+            {{ Cliente.PApellido }}.
+          </li>
+        </ul>
+        <ul>
+          <li *ngFor="let Cliente of Clientes">
+            {{ Cliente.Edad }}.
+          </li>
+        </ul>
+      </div>
+  </div>

@@ -1,0 +1,23 @@
+USE [DigitalWare]
+GO
+
+/****** Object:  Table [dbo].[CatCliente]    Script Date: 30/10/2020 13:06:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CatCliente](
+	[IdCliente] [int] NOT NULL,
+	[PNombre] [nvarchar](max) NOT NULL,
+	[PApellido] [nvarchar](max) NOT NULL,
+	[Edad] [int] NOT NULL,
+ CONSTRAINT [PK_CatCliente] PRIMARY KEY CLUSTERED 
+(
+	[IdCliente] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+

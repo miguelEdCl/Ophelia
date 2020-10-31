@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="472979e281714b399830fdc71e50180d" Name="Diagram1">
+        <EntityTypeShape EntityType="DigitalWareModel.CatCliente" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalWareModel.CatFactura" Width="1.5" PointX="3.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalWareModel.CatInventarioP" Width="1.5" PointX="2.625" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalWareModel.CatProducto" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="DigitalWareModel.FK_CatFactura_CatCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalWareModel.FK_CatFactura_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalWareModel.FK_CatInventarioP_CatProducto" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

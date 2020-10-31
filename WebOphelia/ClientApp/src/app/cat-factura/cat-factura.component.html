@@ -1,0 +1,46 @@
+<div class="TablaDatos">
+  <div class="Titulos">
+    <ul>
+      <li>ID</li>
+      <li>Id Producto</li>
+      <li>Id Cliente</li>
+      <li>Cantidad</li>
+      <li>Total</li>
+      <li>Fecha</li>
+    </ul>
+  </div>
+  <div class="Registros">
+
+    <ul>
+      <li *ngFor="let Cliente of Facturas">
+        {{ Cliente.IdFactura }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Facturas">
+        {{ Cliente.IdProducto }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Facturas">
+        {{ Cliente.IdCliente }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Facturas">
+        {{ Cliente.Cantidad }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Facturas">
+        {{ Cliente.TotalCompra }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Facturas">
+        {{ Cliente.FechaCompra }}.
+      </li>
+    </ul>
+  </div>
+</div>
+<a class="nav-link text-dark" [routerLink]="['/CrearFactura']">Nueva Factura</a>

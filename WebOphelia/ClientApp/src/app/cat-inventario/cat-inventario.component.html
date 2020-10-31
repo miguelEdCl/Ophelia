@@ -1,0 +1,27 @@
+<div class="TablaDatos">
+  <div class="Titulos">
+    <ul>
+      <li>ID</li>
+      <li>Id Producto</li>
+      <li>Cantidad En Inventario</li>
+    </ul>
+  </div>
+  <div class="Registros">
+
+    <ul>
+      <li *ngFor="let Cliente of Inventarios">
+        {{ Cliente.IdInventario }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Inventarios">
+        {{ Cliente.IdProducto }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Inventarios">
+        {{ Cliente.PInventario }}.
+      </li>
+    </ul>
+  </div>
+</div>

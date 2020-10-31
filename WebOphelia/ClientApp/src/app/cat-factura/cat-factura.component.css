@@ -1,0 +1,30 @@
+.Registros > ul > li {
+  list-style: none;
+  margin: 1.5em 0em;
+}
+
+.Titulos {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+  .Titulos > ul > li {
+    margin: 0px 3em 0px 3em;
+  }
+
+.Registros {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.Titulos > ul > li {
+  list-style: none;
+  float: left;
+}
+
+.TablaDatos {
+  width: 100%;
+  display: block;
+}

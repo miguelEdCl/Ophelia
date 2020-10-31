@@ -1,0 +1,27 @@
+<div class="TablaDatos">
+  <div class="Titulos">
+    <ul>
+      <li>ID</li>
+      <li>Nombre Producto</li>
+      <li>Precio Producto</li>
+    </ul>
+  </div>
+  <div class="Registros">
+
+    <ul>
+      <li *ngFor="let Cliente of Productos">
+        {{ Cliente.IdProducto }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Productos">
+        {{ Cliente.NProducto }}.
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let Cliente of Productos">
+        {{ Cliente.PProducto }}$
+      </li>
+    </ul>
+  </div>
+</div>

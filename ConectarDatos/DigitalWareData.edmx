@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DigitalWareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CatCliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="PNombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PApellido" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Edad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatFactura">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="TotalCompra" Type="float" />
+          <Property Name="FechaCompra" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatInventarioP">
+          <Key>
+            <PropertyRef Name="IdInventario" />
+          </Key>
+          <Property Name="IdInventario" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="PInventario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatProducto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="NProducto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PProducto" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CatFactura_CatCliente">
+          <End Role="CatCliente" Type="Self.CatCliente" Multiplicity="1" />
+          <End Role="CatFactura" Type="Self.CatFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatCliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="CatFactura">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatFactura_Producto">
+          <End Role="CatProducto" Type="Self.CatProducto" Multiplicity="1" />
+          <End Role="CatFactura" Type="Self.CatFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatProducto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="CatFactura">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatInventarioP_CatProducto">
+          <End Role="CatProducto" Type="Self.CatProducto" Multiplicity="1" />
+          <End Role="CatInventarioP" Type="Self.CatInventarioP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatProducto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="CatInventarioP">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DigitalWareModelStoreContainer">
+          <EntitySet Name="CatCliente" EntityType="Self.CatCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatFactura" EntityType="Self.CatFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatInventarioP" EntityType="Self.CatInventarioP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatProducto" EntityType="Self.CatProducto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CatFactura_CatCliente" Association="Self.FK_CatFactura_CatCliente">
+            <End Role="CatCliente" EntitySet="CatCliente" />
+            <End Role="CatFactura" EntitySet="CatFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatFactura_Producto" Association="Self.FK_CatFactura_Producto">
+            <End Role="CatProducto" EntitySet="CatProducto" />
+            <End Role="CatFactura" EntitySet="CatFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatInventarioP_CatProducto" Association="Self.FK_CatInventarioP_CatProducto">
+            <End Role="CatProducto" EntitySet="CatProducto" />
+            <End Role="CatInventarioP" EntitySet="CatInventarioP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DigitalWareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CatCliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="PNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PApellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Edad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CatFactura" Relationship="Self.FK_CatFactura_CatCliente" FromRole="CatCliente" ToRole="CatFactura" />
+        </EntityType>
+        <EntityType Name="CatFactura">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="TotalCompra" Type="Double" />
+          <Property Name="FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CatCliente" Relationship="Self.FK_CatFactura_CatCliente" FromRole="CatFactura" ToRole="CatCliente" />
+          <NavigationProperty Name="CatProducto" Relationship="Self.FK_CatFactura_Producto" FromRole="CatFactura" ToRole="CatProducto" />
+        </EntityType>
+        <EntityType Name="CatInventarioP">
+          <Key>
+            <PropertyRef Name="IdInventario" />
+          </Key>
+          <Property Name="IdInventario" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="PInventario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CatProducto" Relationship="Self.FK_CatInventarioP_CatProducto" FromRole="CatInventarioP" ToRole="CatProducto" />
+        </EntityType>
+        <EntityType Name="CatProducto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="NProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PProducto" Type="Double" Nullable="false" />
+          <NavigationProperty Name="CatFactura" Relationship="Self.FK_CatFactura_Producto" FromRole="CatProducto" ToRole="CatFactura" />
+          <NavigationProperty Name="CatInventarioP" Relationship="Self.FK_CatInventarioP_CatProducto" FromRole="CatProducto" ToRole="CatInventarioP" />
+        </EntityType>
+        <Association Name="FK_CatFactura_CatCliente">
+          <End Role="CatCliente" Type="Self.CatCliente" Multiplicity="1" />
+          <End Role="CatFactura" Type="Self.CatFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatCliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="CatFactura">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatFactura_Producto">
+          <End Role="CatProducto" Type="Self.CatProducto" Multiplicity="1" />
+          <End Role="CatFactura" Type="Self.CatFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatProducto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="CatFactura">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatInventarioP_CatProducto">
+          <End Role="CatProducto" Type="Self.CatProducto" Multiplicity="1" />
+          <End Role="CatInventarioP" Type="Self.CatInventarioP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatProducto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="CatInventarioP">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DigitalWareEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CatCliente" EntityType="Self.CatCliente" />
+          <EntitySet Name="CatFactura" EntityType="Self.CatFactura" />
+          <EntitySet Name="CatInventarioP" EntityType="Self.CatInventarioP" />
+          <EntitySet Name="CatProducto" EntityType="Self.CatProducto" />
+          <AssociationSet Name="FK_CatFactura_CatCliente" Association="Self.FK_CatFactura_CatCliente">
+            <End Role="CatCliente" EntitySet="CatCliente" />
+            <End Role="CatFactura" EntitySet="CatFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatFactura_Producto" Association="Self.FK_CatFactura_Producto">
+            <End Role="CatProducto" EntitySet="CatProducto" />
+            <End Role="CatFactura" EntitySet="CatFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatInventarioP_CatProducto" Association="Self.FK_CatInventarioP_CatProducto">
+            <End Role="CatProducto" EntitySet="CatProducto" />
+            <End Role="CatInventarioP" EntitySet="CatInventarioP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DigitalWareModelStoreContainer" CdmEntityContainer="DigitalWareEntities">
+          <EntitySetMapping Name="CatCliente">
+            <EntityTypeMapping TypeName="DigitalWareModel.CatCliente">
+              <MappingFragment StoreEntitySet="CatCliente">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="PNombre" ColumnName="PNombre" />
+                <ScalarProperty Name="PApellido" ColumnName="PApellido" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatFactura">
+            <EntityTypeMapping TypeName="DigitalWareModel.CatFactura">
+              <MappingFragment StoreEntitySet="CatFactura">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="TotalCompra" ColumnName="TotalCompra" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatInventarioP">
+            <EntityTypeMapping TypeName="DigitalWareModel.CatInventarioP">
+              <MappingFragment StoreEntitySet="CatInventarioP">
+                <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="PInventario" ColumnName="PInventario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatProducto">
+            <EntityTypeMapping TypeName="DigitalWareModel.CatProducto">
+              <MappingFragment StoreEntitySet="CatProducto">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NProducto" ColumnName="NProducto" />
+                <ScalarProperty Name="PProducto" ColumnName="PProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
