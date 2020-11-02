@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { CatClienteComponent } from './cat-cliente/cat-cliente.component';
 import { CatProductoComponent } from './cat-producto/cat-producto.component';
 import { CatInventarioComponent } from './cat-inventario/cat-inventario.component';
 import { CatFacturaComponent } from './cat-factura/cat-factura.component';
+import { NuevafacturaComponent } from './nuevafactura/nuevafactura.component';
 
 
 @NgModule({
@@ -26,12 +28,14 @@ import { CatFacturaComponent } from './cat-factura/cat-factura.component';
     CatClienteComponent,
     CatProductoComponent,
     CatInventarioComponent,
-    CatFacturaComponent
+    CatFacturaComponent,
+    NuevafacturaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -40,6 +44,7 @@ import { CatFacturaComponent } from './cat-factura/cat-factura.component';
       { path: 'CatalogoProducto', component: CatProductoComponent },
       { path: 'CatalogoInventario', component: CatInventarioComponent },
       { path: 'CatalogoFactura', component: CatFacturaComponent },
+      { path: 'NuevaFactura', component: NuevafacturaComponent },
     ])
   ],
   providers: [],
